@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nautical Boat Service</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .form-field {
+            width: 100%;
+        }
+        .accordion-button::after {
+            content: '\002B'; /* Unicode character for "+" */
+            float: right;
+        }
+        .accordion-button.collapsed::after {
+            content: '\2212'; /* Unicode character for "-" */
+        }
+        .accordion-header {
+            background-color: #f8f9fa; /* Light gray */
+            border: 1px solid #dee2e6; /* Gray border */
+        }
+        .accordion-body {
+            background-color: #ffffff; /* White */
+            border: 1px solid #dee2e6; /* Gray border */
+            border-top: none; /* Remove top border */
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            border: 3px solid green;
+        }
+        .btn-bold {
+            font-weight: bold;
+        }
+        .footer-container {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+        }
+        .footer-heading {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .footer-description {
+            color: #666;
+        }
+        .footer-column {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" style="color: green; font-size: 36px; font-weight: bold; text-decoration: none; font-family: Times, serif">Nautical Dreams Boat Club</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="active nav-link btn-bold" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-bold" href="find_boat.html">Find Boat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-bold" href="compare.html">Compare</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-bold" href="about.html">About Me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-bold" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-white py-5">
+        <div class="container">
+            <h1 class="display-4" style="color: green; font-size: 38px; font-weight: bold; text-align: center; font-family: Times, serif">Luxury Boat Service Since 2024</h1>
+            <p class="lead" style="color: green; font-size: 24px; font-weight: bold; text-align: center; font-family: Times, serif">Find the right Boat for you.</p>
+
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <select id="boatSelect" class="form-select form-field">
+                        <option selected>Select Boat</option>
+                        <option value="Luxury Modern Yacht">Luxury Modern Yacht</option>
+                        <option value="Shamrock Yacht">Shamrock Yacht</option>
+                        <option value="Predator Yacht">Predator Yacht</option>
+                        <option value="Speedster Boat">Speedster Boat</option>
+                        <option value="Comet Boat">Comet Boat</</option>
+                        <option value="Wave Rider">Wave Rider</option>
+                        <option value="Sea Breeze">Sea Breeze</option>
+                        <option value="Adventure Sailboat">Adventure Sailboat</option>
+                        <option value="Explorer Sailboat">Explorer Sailboat</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-3">
+                <div class="col-md-auto">
+                    <button type="button" onclick="searchBoats()" class="btn btn-primary btn-bold">Search</button>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="row justify-content-center" data-poster-url="https://assets-global.website-files.com/6635af2a181511164cdc1644/66438cf754938bc0a3ae756f_12-poster-00001.jpg" data-video-urls="https://assets-global.website-files.com/6635af2a181511164cdc1644/66438cf754938bc0a3ae756f_12-transcode.mp4,https://assets-global.website-files.com/6635af2a181511164cdc1644/66438cf754938bc0a3ae756f_12-transcode.webm" data-autoplay="true" data-loop="true" data-wf-ignore="true" class="background-video w-background-video w-background-video-atom">
+                    <video id="e3d9b569-e934-acfa-9fc3-15d44f882ff6-video" autoplay="" loop="" style="background-image:url('https://assets-global.website-files.com/6635af2a181511164cdc1644/66438cf754938bc0a3ae756f_12-poster-00001.jpg')" muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover">
+                        <source src="https://assets-global.website-files.com/6635af2a181511164cdc1644/66438cf754938bc0a3ae756f_12-transcode.mp4" data-wf-ignore="true"/>
+                        <source src="https://assets-global.website-files.com/6635af2a181511164cdc1644/66438cf754938bc0a3ae756f_12-transcode.webm" data-wf-ignore="true"/>
+                    </video>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <footer class="footer-container">
+        <div class="container">
+            <h2 class="footer-heading">Find Best Boat Deals from Us</h2>
+            <div class="row text-center">
+                <div class="col-md-4 footer-column">
+                    <h5 class="footer-title">Exclusive Deals</h5>
+                    <p class="footer-description">Stay updated with our exclusive boat deals and offers. Never miss out on a great deal!</p>
+                </div>
+                <div class="col-md-4 footer-column">
+                    <h5 class="footer-title">Premium Quality</h5>
+                    <p class="footer-description">All our boats are inspected and rated by top experts to ensure the highest quality and performance.</p>
+                </div>
+                <div class="col-md-4 footer-column">
+                    <h5 class="footer-title">Customer Support</h5>
+                    <p class="footer-description">Our dedicated support team is here to assist you 24/7 with all your queries and concerns.</p>
+                </div>
+            </div>
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                &copy; 2024 BoatFinderApp. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function searchBoats() {
+            const selectedBoat = document.getElementById('boatSelect').value;
+            window.location.href = `listings.html?boat=${selectedBoat}`;
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

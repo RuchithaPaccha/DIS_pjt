@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boat Listings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+       .table-container {
+            margin-top: 40px;
+        }
+       .boat-card {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+       .boat-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto 15px auto;
+        }
+       .center-text {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" style="color: green; font-size: 36px; font-weight: bold; text-decoration: none; font-family: Times, serif">Nautical Dreams Boat Club</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-bold" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-bold" href="find_boat.html">Find Boat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-bold" href="compare.html">Compare</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-bold" href="about.html">About Me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-bold" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-white py-5">
+        <div class="container">
+            <h1 class="display-4" style="color: green; font-size: 38px; font-weight: bold; text-align: center; font-family: Times, serif">Boat Listings</h1>
+        </div>
+    </header>
+
+    <!-- Dropdown to select boat -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <label for="boatDropdown" class="form-label">Select a Boat:</label>
+                <select id="boatDropdown" class="form-select">
+                    <option value="">Choose...</option>
+                    <option value="Luxury Modern Yacht">Luxury Modern Yacht</option>
+                    <option value="Shamrock Yacht">Shamrock Yacht</option>
+                    <option value="Predator Yacht">Predator Yacht</option>
+                    <option value="Speedster Boat">Speedster Boat</option>
+                    <option value="Comet Boat">Comet Boat</option>
+                    <option value="Wave Rider">Wave Rider</option>
+                    <option value="Sea Breeze">Sea Breeze</option>
+                    <option value="Adventure Sailboat">Adventure Sailboat</option>
+                    <option value="Explorer Sailboat">Explorer Sailboat</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="container table-container mt-4" id="boatListingsContainer">
+        <!-- Boat details will be inserted here -->
+    </div>
+
+    <script>
+        var data = [
+            { "Id": 1, "boatName": "Luxury Modern Yacht", "type": "Yacht", "length": 30, "minPrice": 2000, "maxPrice": 3000, "image": "images/luxury_modern_yacht.jpg", "rentRange": "$1500 - $2000" },
+            { "Id": 2, "boatName": "Shamrock Yacht", "type": "Yacht", "length": 35, "minPrice": 2500, "maxPrice": 3500, "image": "images/shamrock_yacht.jpg", "rentRange": "$1800 - $2300" },
+            { "Id": 3, "boatName": "Predator Yacht", "type": "Yacht", "length": 40, "minPrice": 3000, "maxPrice": 4000, "image": "images/predator_yacht.jpg", "rentRange": "$2000 - $2500" },
+            { "Id": 4, "boatName": "Speedster Boat", "type": "Speedboat", "length": 20, "minPrice": 1000, "maxPrice": 1500, "image": "images/speedster_boat.jpg", "rentRange": "$700 - $900" },
+            { "Id": 5, "boatName": "Comet Boat", "type": "Speedboat", "length": 25, "minPrice": 1500, "maxPrice": 2000, "image": "images/comet_boat.jpg", "rentRange": "$1000 - $1200" },
+            { "Id": 6, "boatName": "Wave Rider", "type": "Jet Ski", "length": 10, "minPrice": 500, "maxPrice": 1000, "image": "images/wave_rider.jpg", "rentRange": "$300 - $500" },
+            { "Id": 7, "boatName": "Sea Breeze", "type": "Jet Ski", "length": 12, "minPrice": 600, "maxPrice": 1100, "image": "images/sea_breeze.jpg", "rentRange": "$400 - $600" },
+            { "Id": 8, "boatName": "Adventure Sailboat", "type": "Sailboat", "length": 30, "minPrice": 1800, "maxPrice": 2500, "image": "images/adventure_sailboat.jpg", "rentRange": "$1300 - $1600" },
+            { "Id": 9, "boatName": "Explorer Sailboat", "type": "Sailboat", "length": 35, "minPrice": 2200, "maxPrice": 2800, "image": "images/explorer_sailboat.jpg", "rentRange": "$1700 - $2000" }
+        ];
+
+        // Function to populate boat information
+        function populateBoatDetails(selectedBoat) {
+            var container = document.getElementById('boatListingsContainer');
+            container.innerHTML = '';
+
+            var boat = data.find(function(item) {
+                return item.boatName === selectedBoat;
+            });
+
+            if (boat) {
+                var card = document.createElement('div');
+                card.className = 'boat-card';
+
+                var image = document.createElement('img');
+                image.src = boat.image;
+                image.alt = boat.boatName;
+                image.className = 'boat-image';
+
+                var boatNameHeader = document.createElement('h2');
+                boatNameHeader.textContent = boat.boatName;
+                boatNameHeader.className = 'center-text';
+
+                var viewMoreButton = document.createElement('button');
+                viewMoreButton.className = 'btn btn-primary mt-3';
+                viewMoreButton.textContent = 'View More';
+                viewMoreButton.onclick = function () {
+                    var detailsContainer = document.createElement('div');
+                    detailsContainer.className = 'mt-3';
+                    detailsContainer.innerHTML = `
+                        <p><strong>Type:</strong> ${boat.type}</p>
+                        <p><strong>Length (ft):</strong> ${boat.length}</p>
+                        <p><strong>Min Price ($):</strong> ${boat.minPrice}</p>
+                        <p><strong>Max Price ($):</strong> ${boat.maxPrice}</p>
+                        <p><strong>Rent Range:</strong> ${boat.rentRange}</p>
+                    `;
+                    card.appendChild(detailsContainer);
+                    viewMoreButton.style.display = 'none'; // Hide view more button after showing details
+                };
+
+                var bookButton = document.createElement('a');
+                bookButton.href = getBookingLink(boat);
+                bookButton.target = '_blank';
+                bookButton.className = 'btn btn-success float-end mt-3';
+                bookButton.textContent = 'Book';
+
+                card.appendChild(image);
+                card.appendChild(boatNameHeader);
+                card.appendChild(viewMoreButton);
+                card.appendChild(bookButton);
+                container.appendChild(card);
+            }
+        }
+
+        // Function to get booking link based on boat name
+        function getBookingLink(item) {
+            switch (item.boatName) {
+                case 'Luxury Modern Yacht':
+                    return 'https://www.yachtcharterfleet.com/';
+                case 'Shamrock Yacht':
+                    return 'https://shamrocksailing.com/';
+                case 'Predator Yacht':
+                    return 'https://www.yachtcharterfleet.com/luxury-charter-yacht-22891/predator.htm';
+                case 'Speedster Boat':
+                    return 'https://www.speedboatadventures.com/tampa/';
+                case 'Comet Boat':
+                    return 'https://www.samboat.com/boat-rental/gaeta/sailboat/127407?country=us';
+                case 'Wave Rider':
+                    return 'https://clearwaterbeachjetski.com/';
+                case 'Sea Breeze':
+                    return 'https://seabreezeboatrentals.com/';
+                case 'Adventure Sailboat':
+                    return 'https://www.boatsetter.com/sailboat-rentals/tampa--fl--united-states';
+                case 'Explorer Sailboat':
+                    return 'https://sarasotabayexplorers.com/miss-explorer-private-charter/';
+                default:
+                    return '#'; // Default link if no specific match found
+            }
+        }
+
+        // Event listener for dropdown change
+        document.getElementById('boatDropdown').addEventListener('change', function() {
+            var selectedBoat = this.value;
+            populateBoatDetails(selectedBoat);
+        });
+
+        // Call function to populate boat listings when the DOM is ready
+        document.addEventListener('DOMContentLoaded', function () {
+            var params = getQueryParams();
+            var selectedBoat = params.boat;
+
+            // Filter data based on selected boat
+            if (selectedBoat) {
+                populateBoatDetails(selectedBoat);
+                document.getElementById('boatDropdown').value = selectedBoat; // Set dropdown value
+            } else {
+                populateBoatDetails(''); // Default to showing no boat details
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
